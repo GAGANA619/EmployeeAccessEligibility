@@ -1,29 +1,27 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        maven 'Maven'
+    }
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
-                bat 'mvn.cmd clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn.cmd test'
+                bat 'mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn.cmd package -DskipTests'
+                bat 'mvn package -DskipTests'
             }
         }
     }
